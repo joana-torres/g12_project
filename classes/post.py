@@ -4,7 +4,7 @@ Created on Tue Mar 25 15:45:54 2025
 
 @author: joana
 """
-
+from classes.topic import Topic
 # Class Person - generic version with inheritance
 from classes.gclass import Gclass
 
@@ -23,15 +23,19 @@ class Post(Gclass):
     def __init__(self, id, date, topic_id, content):
         super().__init__()
         # Object attributes
-        id = Post.get_id(id)
-        self._id = id
-        self._date = date
-        self._topic_id = topic_id
-        self._content = content
-        # Add the new object to the dictionary of objects
-        Post.obj[id] = self
-        # Add the id to the list of object ids
-        Post.lst.append(id)
+        topic_id = int(topic_id)
+        if topic_id in Topic.lst:
+            id = Post.get_id(id)
+            self._id = id
+            self._date = date
+            self._topic_id = topic_id
+            self._content = content
+            # Add the new object to the dictionary of objects
+            Post.obj[id] = self
+            # Add the id to the list of object ids
+            Post.lst.append(id)
+        else:
+            print('Topic',topic_id,'not found')
         
     # id property getter method
     @property

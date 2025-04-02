@@ -5,22 +5,22 @@
 #objective: Test classes based on generic class Gclass
 
 """""
-db = 'business.db'
+
 
 #Uncomment to test class Person (select next 4 lines and press ctrl-1)
 
 
 from classes.post import Post
-test_class = Post
+# test_class = Post
 
-# from classes.user import User
+from classes.user import User
 # test_class = User
 
-# from classes.topic import Topic
+from classes.topic import Topic
 # test_class = Topic
 
-# from classes.user_post import User_Post
-# test_class = User_Post
+from classes.user_post import User_Post
+test_class = User_Post
 
 
 
@@ -31,7 +31,10 @@ db = 'socialmedia.db'
 import datetime
 
 #Reads the test_class.csv file
-test_class.read('data/' + db)
+Topic.read('data/'+ db)
+Post.read('data/'+ db)
+User.read('data/'+ db)
+User_Post.read('data/'+ db)
 
 op = ''
 while op != 'q':
