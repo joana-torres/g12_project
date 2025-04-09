@@ -3,7 +3,7 @@
 (2025) objective: Generic class
 """""
 # Generic Class
-import sys
+import sys #alteracao
 import datetime
 import sqlite3
 class Gclass:
