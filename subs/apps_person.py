@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, session
-from classes.person import Person
+from classes.user import User
 
 prev_option = ""
 
-def apps_person():
+def apps_user():
     global prev_option
     ulogin=session.get("user")
     if (ulogin != None):
@@ -13,10 +13,10 @@ def apps_person():
         if option == "edit":
             butshow, butedit = "disabled", "enabled"
         elif option == "delete":
-            obj = Person.current()
-            Person.remove(obj.id)
-            if not Person.previous():
-                Person.first()
+            obj = User.current()
+            User.remove(obj.id)
+            if not User.previous():
+                User.first()
         elif option == "insert":
             butshow, butedit = "disabled", "enabled"
         elif option == 'cancel':

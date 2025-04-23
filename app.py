@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, session
-from classes.person import Person
+from classes.user import User
 from datafile import filename
 
 app = Flask(__name__)
 
-Person.read(filename + 'Person.db')
+User.read(filename + 'Person.db')
 prev_option = ""
 app.secret_key = 'BAD_SECRET_KEY'
 
@@ -16,50 +16,50 @@ def index():
     if option == "edit":
         butshow, butedit = "disabled", "enabled"
     elif option == "delete":
-        obj = Person.current()
-        Person.remove(obj.id)
-        if not Person.previous():
-            Person.first()
+        obj = User.current()
+        User.remove(obj.id)
+        if not User.previous():
+            User.first()
     elif option == "insert":
         butshow, butedit = "disabled", "enabled"
     elif option == 'cancel':
         pass
     elif prev_option == 'insert' and option == 'save':
-        strobj = str(Person.get_id(0))
+        strobj = str(User.get_id(0))
         strobj = strobj + ';' + request.form["name"] + ';' + \
-        request.form["dob"] + ';' + request.form["salary"]
-        obj = Person.from_string(strobj)
-        Person.insert(obj.id)
-        Person.last()
+        request.form["email"] + ';' + request.form["signup_date"]
+        obj = User.from_string(strobj)
+        User.insert(obj.id)
+        User.last()
     elif prev_option == 'edit' and option == 'save':
-        obj = Person.current()
+        obj = User.current()
         obj.name = request.form["name"]
-        obj.dob = request.form["dob"]
-        obj.salary = float(request.form["salary"])
-        Person.update(obj.id)
+        obj.email = request.form["email"]
+        obj.signup_date = float(request.form["signup_date"])
+        User.update(obj.id)
     elif option == "first":
-        Person.first()
+        User.first()
     elif option == "previous":
-        Person.previous()
+        User.previous()
     elif option == "next":
-        Person.nextrec()
+        User.nextrec()
     elif option == "last":
-        Person.last()
+        User.last()
     elif option == 'exit':
         return "<h1>Thank you for using this app</h1>"
     prev_option = option
-    obj = Person.current()
-    if option == 'insert' or len(Person.lst) == 0:
+    obj = User.current()
+    if option == 'insert' or len(User.lst) == 0:
         id = 0
-        id = Person.get_id(id)
-        name = dob = salary = ""
+        id = User.get_id(id)
+        name = email = signup_date= ""
     else:
         id = obj.id
         name = obj.name
-        dob = obj.dob
-        salary = obj.salary
+        email = obj.email
+        signup_date = obj.signup_date
     return render_template("index.html", butshow=butshow, butedit=butedit, 
-                    id=id,name = name,dob=dob,salary=salary, 
+                    id=id,name = name,email=email,signup_date=signup_date, 
                     ulogin=session.get("user"))
         
 if __name__ == '__main__':

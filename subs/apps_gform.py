@@ -1,9 +1,8 @@
 from flask import Flask, render_template, request, session
 
-from classes.customer import Customer
-from classes.product import Product
-from classes.customerorder import CustomerOrder
-from classes.orderproduct import OrderProduct
+from classes.post import Post
+from classes.topic import Topic
+from classes.user_post import User_Post
 from classes.userlogin import Userlogin
 
 prev_option = ""
