@@ -1,85 +1,95 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+html, body {
     margin: 0;
-    min-height: 300px;
+    height: 100%; /* Garantir que o fundo cubra toda a altura */
+    font-family: 'Patrick Hand', cursive;
+    color: #333;
+    background: linear-gradient(to bottom, #fdfaf6, #fcd5bd);
 }
 
-nav{
+nav {
     width: 100%;
     float: left;
 }
 
-.menu{
+.menu {
     margin: 0;
-    padding: 8px;
-    height: 100%;
-    background-color: #334a94;
-
+    padding: 12px;
+    background-color: #f96635;
+    border-bottom: 5px solid #93d3ae;
+    border-radius: 0 0 25px 25px;
 }
 
-.menu li{
+.menu li {
     display: inline;
+    margin-right: 20px;
 }
 
-.button{
-    font-family: Arial;
-    font-size: 1em;
-    font-style: none;
-    color: #ffffff;
-    padding: 8px;
-    text-decoration: none;
-}
-
-.button:link{
-    background-color: #334a94;
-    color: #ffffff;
-}
-
-.button:hover{
-    background-color: lightblue;
-}
-
-.dados{
-        text-align: center;
-        font-size: 1em;
-}
-
-.button1{
-    font-family: Arial;
-    background-color: #334a94;
-    font-size: 1em;
-    font-style: none;
+.button {
+    font-size: 1.1em;
     color: white;
-    padding: 4px;
-    border-radius: 5px}
+    padding: 10px 18px;
+    background-color: #93d3ae;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    font-family: 'Patrick Hand', cursive;
+    display: inline-block;
+    border: none;
 }
 
-.button1:link{
-    background-color: #334a94;
-    color: #ffffff;
+.button:hover {
+    background-color: #f96635;
+    color: #fff;
 }
 
-.button1:hover{
-    background-color: lightblue;
+.dados {
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 20px;
 }
 
-.button1:disabled{
+.button1 {
+    font-size: 1.1em;
+    background-color: #93d3ae;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 25px;
+    border: none;
+    font-family: 'Patrick Hand', cursive;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.button1:hover {
+    background-color: #f96635;
+}
+
+.button1:disabled {
     background-color: lightgray;
+    cursor: not-allowed;
 }
 
 table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 50%;
-  margin-left: auto; 
-  margin-right: auto;
+    font-family: 'Patrick Hand', cursive;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 70%;
+    margin: 30px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+    border: 1px solid #93d3ae;
+    text-align: center;
+    padding: 12px;
+    background-color: white;
+    color: #333;
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+    background-color: #f4fdfa;
 }

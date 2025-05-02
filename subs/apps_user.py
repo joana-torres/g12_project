@@ -22,41 +22,41 @@ def apps_user():
         elif option == 'cancel':
             pass
         elif prev_option == 'insert' and option == 'save':
-            strobj = str(Person.get_id(0))
+            strobj = str(User.get_id(0))
             strobj = strobj + ';' + request.form["name"] + ';' + \
-            request.form["dob"] + ';' + request.form["salary"]
-            obj = Person.from_string(strobj)
-            Person.insert(obj.id)
-            Person.last()
+            request.form["email"] + ';' + request.form["signup_date"]
+            obj = User.from_string(strobj)
+            User.insert(obj.id)
+            User.last()
         elif prev_option == 'edit' and option == 'save':
-            obj = Person.current()
+            obj = User.current()
             obj.name = request.form["name"]
-            obj.dob = request.form["dob"]
-            obj.salary = float(request.form["salary"])
-            Person.update(obj.id)
+            obj.dob = request.form["email"]
+            obj.salary = request.form["signup_date"]
+            User.update(obj.id)
         elif option == "first":
-            Person.first()
+            User.first()
         elif option == "previous":
-            Person.previous()
+            User.previous()
         elif option == "next":
-            Person.nextrec()
+            User.nextrec()
         elif option == "last":
-            Person.last()
+            User.last()
         elif option == 'exit':
             return render_template("index.html", ulogin=session.get("user"))
         prev_option = option
-        obj = Person.current()
-        if option == 'insert' or len(Person.lst) == 0:
+        obj = User.current()
+        if option == 'insert' or len(User.lst) == 0:
             id = 0
-            id = Person.get_id(id)
-            name = dob = salary = ""
+            id = User.get_id(id)
+            name = email = signup_date = ""
         else:
             id = obj.id
             name = obj.name
-            dob = obj.dob
-            salary = obj.salary
-        return render_template("person.html", butshow=butshow, butedit=butedit, 
-                        id=id,name = name,dob=dob,salary=salary, 
+            email = obj.email
+            signup_date = obj.signup_date
+        return render_template("user.html", butshow=butshow, butedit=butedit, 
+                        id=id,name = name,email=email,signup_date=signup_date, 
                         ulogin=session.get("user"))
     else:
         return render_template("index.html", ulogin=ulogin)

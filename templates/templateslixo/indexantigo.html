@@ -1,15 +1,18 @@
+{% extends 'menu.html' %}
+
 <!doctype html>
+
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Person gclass</title>
+        <title>User gclass</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
     </head>
     <body>
         <div class="dados">
             <img src="{{ url_for('static', filename='images/Person.jpg')}}" alt="persons" width="200" height="200">
-            <h1>Person</h1>
+            <h1>User</h1>
             <br>
             <button id="edit" type="button" {{butshow}} onclick="window.location.href = '/?option=edit'" class="button1">Edit</button>
             <button id="delete" type="button" {{butshow}} onclick="window.location.href = '/?option=delete'" class="button1">Delete</button>
@@ -29,11 +32,11 @@
                 <label for="name">Name:</label>
                 <input type="text" {{butedit}} id="name" name="name" value="{{name}}" size="30"/>
                 <br><br>
-                <label for="dob">DoB:</label>
-                <input type="text" {{butedit}} id="dob" name="dob" value="{{dob}}" size="10"/>
+                <label for="email">Email:</label>
+                <input type="text" {{butedit}} id="email" name="email" value="{{email}}" size="10"/>
                 <br><br>
-                <label for="salary">Salary:</label>
-                <input type="text" {{butedit}} id="salary" name="salary" value="{{salary}}" size="10"/>
+                <label for="signup_date">Signup Date:</label>
+                <input type="date" {{butedit}} id="signup_date" name="signup_date" value="{{signup_date}}" size="10"/>
             </form>
             <br>
             <button id="first" type="button" {{butshow}} onclick="window.location.href = '/?option=first'" class="button1">First</button>

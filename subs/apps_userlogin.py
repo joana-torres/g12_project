@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, session
 from classes.userlogin import Userlogin
 
@@ -7,10 +6,11 @@ prev_option = ""
 def apps_userlogin():
     global prev_option
     ulogin=session.get("user")
+    user_id = Userlogin.get_user_id(ulogin)
     if (ulogin != None):
-        group = Userlogin.obj[Userlogin.user_id].usergroup
+        group = Userlogin.obj[user_id].usergroup
         if group != "admin":
-            Userlogin.current(ulogin)
+            Userlogin.current(user_id)
         butshow = "enabled"
         butedit = "disabled"
         option = request.args.get("option")
@@ -19,7 +19,7 @@ def apps_userlogin():
             butedit = "enabled"
         elif option == "delete":
             obj = Userlogin.current()
-            Userlogin.remove(obj.user)
+            Userlogin.remove(obj.id)
             if not Userlogin.previous():
                 Userlogin.first()
         elif option == "insert":
@@ -28,9 +28,9 @@ def apps_userlogin():
         elif option == 'cancel':
             pass
         elif prev_option == 'insert' and option == 'save':
-            obj = Userlogin(request.form["user"],request.form["usergroup"], \
+            obj = Userlogin(0,request.form["user"],request.form["usergroup"], \
                             Userlogin.set_password(request.form["password"]))
-            Userlogin.insert(obj.user)
+            Userlogin.insert(obj.id)
             Userlogin.last()
         elif prev_option == 'edit' and option == 'save':
             obj = Userlogin.current()
@@ -38,8 +38,7 @@ def apps_userlogin():
                 obj.usergroup = request.form["usergroup"]
             if request.form["password"] != "":
                 obj.password = Userlogin.set_password(request.form["password"])
-                print(obj.password)
-            Userlogin.update(obj.user)
+            Userlogin.update(obj.id)
         elif option == "first":
             Userlogin.first()
         elif option == "previous":
@@ -64,4 +63,3 @@ def apps_userlogin():
     else:
         return render_template("index.html", ulogin=ulogin)
 # -*- coding: utf-8 -*-
-

@@ -90,3 +90,7 @@ class Userlogin(Gclass):
     
     def __str__(self):
         return f'Id:{self.id}, User:{self.user}, Usergroup:{self.usergroup}'
+    
+    
+    
+    

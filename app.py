@@ -1,66 +1,57 @@
 from flask import Flask, render_template, request, session
 from classes.user import User
 from datafile import filename
+from classes.post import Post
+from classes.topic import Topic
+from classes.user_post import User_Post
+from classes.userlogin import Userlogin
+from subs.apps_user import apps_user
+from subs.apps_gform import apps_gform
+from subs.apps_subform import apps_subform
+from subs.apps_userlogin import apps_userlogin
+
+
 
 app = Flask(__name__)
 
-User.read(filename + 'Person.db')
+User.read(filename + 'socialmedia.db')
+Topic.read(filename + 'socialmedia.db')
+Post.read(filename + 'socialmedia.db')
+User_Post.read(filename + 'socialmedia.db')
+Userlogin.read(filename + 'socialmedia.db')
 prev_option = ""
 app.secret_key = 'BAD_SECRET_KEY'
 
-@app.route("/", methods=["post","get"])
+@app.route("/")
 def index():
-    global prev_option
-    butshow, butedit = "enabled", "disabled"
-    option = request.args.get("option")
-    if option == "edit":
-        butshow, butedit = "disabled", "enabled"
-    elif option == "delete":
-        obj = User.current()
-        User.remove(obj.id)
-        if not User.previous():
-            User.first()
-    elif option == "insert":
-        butshow, butedit = "disabled", "enabled"
-    elif option == 'cancel':
-        pass
-    elif prev_option == 'insert' and option == 'save':
-        strobj = str(User.get_id(0))
-        strobj = strobj + ';' + request.form["name"] + ';' + \
-        request.form["email"] + ';' + request.form["signup_date"]
-        obj = User.from_string(strobj)
-        User.insert(obj.id)
-        User.last()
-    elif prev_option == 'edit' and option == 'save':
-        obj = User.current()
-        obj.name = request.form["name"]
-        obj.email = request.form["email"]
-        obj.signup_date = float(request.form["signup_date"])
-        User.update(obj.id)
-    elif option == "first":
-        User.first()
-    elif option == "previous":
-        User.previous()
-    elif option == "next":
-        User.nextrec()
-    elif option == "last":
-        User.last()
-    elif option == 'exit':
-        return "<h1>Thank you for using this app</h1>"
-    prev_option = option
-    obj = User.current()
-    if option == 'insert' or len(User.lst) == 0:
-        id = 0
-        id = User.get_id(id)
-        name = email = signup_date= ""
-    else:
-        id = obj.id
-        name = obj.name
-        email = obj.email
-        signup_date = obj.signup_date
-    return render_template("index.html", butshow=butshow, butedit=butedit, 
-                    id=id,name = name,email=email,signup_date=signup_date, 
-                    ulogin=session.get("user"))
-        
+    return render_template("index.html", ulogin=session.get("user"))
+@app.route("/login")
+def login():
+    return render_template("login.html", user= "", password="", ulogin=session.get("user"),resul = "")
+@app.route("/logoff")
+def logoff():
+    session.pop("user",None)
+    return render_template("index.html", ulogin=session.get("user"))
+@app.route("/chklogin", methods=["post","get"])
+def chklogin():
+    user = request.form["user"]
+    password = request.form["password"]
+    resul = Userlogin.chk_password(user, password)
+    if resul == "Valid":
+        session["user"] = user
+        return render_template("index.html", ulogin=session.get("user"))
+    return render_template("login.html", user=user, password = password, ulogin=session.get("user"),resul = resul)
+@app.route("/User", methods=["post","get"])
+def user():
+    return apps_user()
+@app.route("/gform/<cname>", methods=["post","get"])
+def gform(cname):
+    return apps_gform(cname)
+@app.route("/subform/<cname>", methods=["post","get"])
+def subform(cname):
+    return apps_subform(cname)
+@app.route("/Userlogin", methods=["post","get"])
+def userlogin():
+    return apps_userlogin()
 if __name__ == '__main__':
     app.run()
