@@ -10,7 +10,7 @@ prev_option = ""
 
 def apps_subform(cname=""):
     global prev_option
-    tlist = cname.split('_')
+    tlist = cname.split('.')
     cnames = tlist[0]
     scname = tlist[1]
     ulogin=session.get("user")
