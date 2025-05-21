@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['app.py', 'datafile.py', 'ex_generic_class.py', 'text_flask.py', 'classes\\topic.py', 'subs\\apps_subform.py', 'subs\\apps_gform.py', 'subs\\apps_user.py', 'templates\\index.html', 'templates\\gform.html', 'templates\\login.html', 'templates\\subform.html', 'templates\\userlogin.html', 'classes\\user_post.py', 'subs\\apps_userlogin.py', 'classes\\userlogin.py', 'classes\\post.py', 'templates\\base.html', 'templates\\user.html', 'templates\\templateslixo\\indexantigo.html', 'templates\\templateslixo\\menu.html', 'data\\socialmedia.sqbpro', 'classes\\user.py', '.gitignore', 'classes\\gclass.py', 'static\\css\\main.css', 'classes\\userposts.py']
+recent_files = ['app.py', 'datafile.py', 'ex_generic_class.py', 'text_flask.py', 'classes\\topic.py', 'subs\\apps_subform.py', 'subs\\apps_gform.py', 'subs\\apps_user.py', 'templates\\index.html', 'templates\\gform.html', 'templates\\login.html', 'templates\\subform.html', 'templates\\userlogin.html', 'classes\\user_post.py', 'subs\\apps_userlogin.py', 'classes\\userlogin.py', 'classes\\post.py', 'templates\\base.html', 'templates\\user.html', 'templates\\templateslixo\\indexantigo.html', 'templates\\templateslixo\\menu.html', 'data\\socialmedia.sqbpro', 'classes\\user.py', '.gitignore', 'classes\\gclass.py', 'static\\css\\main.css']
 
 [main]
 version = 0.2.0
