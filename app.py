@@ -11,7 +11,8 @@ from subs.apps_subform import apps_subform
 from subs.apps_plot import apps_plot
 from subs.apps_plotly import apps_plotly
 from subs.apps_userlogin import apps_userlogin
-
+from subs_userFoto import userfsub
+import os
 
 
 app = Flask(__name__)
@@ -23,6 +24,12 @@ User_Post.read(filename + 'socialmedia.db')
 Userlogin.read(filename + 'socialmedia.db')
 prev_option = ""
 app.secret_key = 'BAD_SECRET_KEY'
+
+
+upload_folder = os.path.join('static', 'fotos')
+
+app.config['UPLOAD'] = upload_folder
+
 
 @app.route("/")
 def index():
@@ -61,5 +68,12 @@ def plotly():
 @app.route("/Userlogin", methods=["post","get"])
 def userlogin():
     return apps_userlogin()
+
+@app.route("/user_foto", methods=["post","get"])
+def gformFoto():
+    cname = "User"
+    return userfsub.userFotoform(app,cname)
+
 if __name__ == '__main__':
     app.run()
+    
