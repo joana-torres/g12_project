@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 {% endblock %}
 
 {% block content %}
-            {{ plot_div | safe }}
-            <br>
-            <div style="text-align: center;">
-                <a class="button" href="/">Back</a></li>
-            </div>
+    <div style="text-align: center;">
+        <img src="{{ url_for('static', filename='images/graph.png')}}" alt="persons" width="200" height="200">
+        <h1>Graph</h1>
+    </div>
 
+    <br>
+
+    {{ plot_div | safe }}
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a class="button" href="/">Back</a>
+    </div>
 {% endblock %}
+

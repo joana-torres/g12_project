@@ -8,10 +8,9 @@ from classes.userlogin import Userlogin
 from subs.apps_user import apps_user
 from subs.apps_gform import apps_gform
 from subs.apps_subform import apps_subform
-from subs.apps_plot import apps_plot
 from subs.apps_plotly import apps_plotly
 from subs.apps_userlogin import apps_userlogin
-from subs_userFoto import userfsub
+#from subs_userFoto import userfsub
 import os
 
 
@@ -59,9 +58,7 @@ def gform(cname):
 @app.route("/subform/<cname>", methods=["post","get"])
 def subform(cname):
     return apps_subform(cname)
-@app.route("/plot", methods=["post","get"])
-def plot():
-    return apps_plot()
+
 @app.route("/plotly", methods=["post","get"])
 def plotly():
     return apps_plotly()
@@ -69,10 +66,10 @@ def plotly():
 def userlogin():
     return apps_userlogin()
 
-@app.route("/user_foto", methods=["post","get"])
-def gformFoto():
-    cname = "User"
-    return userfsub.userFotoform(app,cname)
+# @app.route("/user_foto", methods=["post","get"])
+# def gformFoto():
+#     cname = "User"
+#     return userfsub.userFotoform(app,cname)
 
 if __name__ == '__main__':
     app.run()

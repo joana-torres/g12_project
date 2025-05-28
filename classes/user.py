@@ -17,7 +17,7 @@ class User(Gclass):
     # field description for use in, for example, input form
     des = ['User Id','User Name', 'Email', 'Signup Date', 'Foto']
     # Constructor: Called when an object is instantiated
-    def __init__(self, id, name, email, signupdate, foto):
+    def __init__(self, id, name, email, signupdate): #falta foto
         super().__init__()
         # Object attributes
         id = User.get_id(id)
@@ -28,7 +28,7 @@ class User(Gclass):
         data=data_formatada.strftime("%Y-%m-%d")
         self._signup_date = datetime.date.fromisoformat(data)
         # Add the new object to the dictionary of objects
-        self._foto = foto
+        #self._foto = foto
         User.obj[id] = self
         # Add the id to the list of object ids
         User.lst.append(id)
@@ -65,11 +65,11 @@ class User(Gclass):
         self._signup_date = signup_date
     # age property getter method
     
-    @property
-    def foto(self):
-        return self._foto
+    # @property
+    # def foto(self):
+    #     return self._foto
     
-    @foto.setter
-    def foto(self, foto):
-        self._foto = foto
+    # @foto.setter
+    # def foto(self, foto):
+    #     self._foto = foto
 
