@@ -42,27 +42,22 @@ class Post(Gclass):
     def id(self):
         return self._id
     
-    
-    # name property getter method
     @property
     def date(self):
         return self._date
-    
-    # dob property getter method
+
     @property
     def topic_id(self):
         return self._topic_id
     
-        
-    # signupdate property getter method
     @property
     def content(self):
         return self._content
-    # salary property setter method
+
     @content.setter
     def content(self, content):
         self._content = content
-    # age property getter method
+    
     
   
 
