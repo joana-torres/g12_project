@@ -11,11 +11,11 @@ class User(Gclass):
     pos = 0
     sortkey = ''
     # Attribute names list, identifier attribute must be the first one and callled 'id'
-    att = ['_id','_name','_email','_signup_date','_foto']
+    att = ['_id','_name','_email','_signup_date']
     # Class header title
     header = 'Users'
     # field description for use in, for example, input form
-    des = ['User Id','User Name', 'Email', 'Signup Date', 'Foto']
+    des = ['User Id','User Name', 'Email', 'Signup Date']
     # Constructor: Called when an object is instantiated
     def __init__(self, id, name, email, signupdate): #falta foto
         super().__init__()
@@ -28,7 +28,7 @@ class User(Gclass):
         data=data_formatada.strftime("%Y-%m-%d")
         self._signup_date = datetime.date.fromisoformat(data)
         # Add the new object to the dictionary of objects
-        self._foto = foto
+        #self._foto = foto
         User.obj[id] = self
         # Add the id to the list of object ids
         User.lst.append(id)
@@ -65,11 +65,11 @@ class User(Gclass):
         self._signup_date = signup_date
     # age property getter method
     
-    @property
-    def foto(self):
-         return self._foto
+    # @property
+    # def foto(self):
+    #      return self._foto
     
-    @foto.setter
-    def foto(self, foto):
-         self._foto = foto
+    # @foto.setter
+    # def foto(self, foto):
+    #      self._foto = foto
 
